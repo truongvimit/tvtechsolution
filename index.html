@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Tech Solution - Chuyên Gia Phát Triển Ứng Dụng Mobile</title>
+    <meta name="description"
+          content="TV Tech Solution chuyên phát triển ứng dụng mobile Android & iOS chuyên nghiệp. Đội ngũ Mobile Engineers giàu kinh nghiệm, giải pháp toàn diện cho doanh nghiệp Việt Nam.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tech-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="120" fill="url(%23a)"/><circle cx="700" cy="800" r="80" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .highlight {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-graphic {
+            width: 100%;
+            max-width: 500px;
+            height: 450px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+        }
+
+        .mobile-mockups {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 120px;
+            height: 240px;
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            border-radius: 25px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-mockup.android {
+            transform: translateX(-30px) rotate(-10deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .phone-mockup.ios {
+            transform: translateX(30px) rotate(10deg);
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .mobile-icons {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 2rem;
+            z-index: 10;
+        }
+
+        .mobile-icons i {
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+            animation: pulse 2s ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        .platform-badges {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 15;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: white;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-graphic::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .tech-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .tech-icons i {
+            font-size: 4rem;
+            color: white;
+            margin: 0 1rem;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--tech-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .features-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .features-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .features-content p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .features-list i {
+            background: var(--tech-gradient);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .features-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-box i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--tech-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-box h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-box p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Mobile Showcase Section */
+        .mobile-showcase {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header.mb-0 {
+            margin-bottom: 0;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .app-showcase {
+            background: white;
+            border-radius: 25px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--tech-gradient);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .app-showcase:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .app-mockup {
+            width: 180px;
+            height: 320px;
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            border-radius: 30px;
+            margin: 0 auto 2rem;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .app-mockup::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border-radius: 20px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-mockup.ecommerce::before {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .app-mockup.social::before {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .app-mockup.business::before {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .app-mockup.health::before {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .app-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: white;
+            z-index: 2;
+        }
+
+        .app-showcase h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .app-showcase p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: var(--tech-gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details i {
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--tech-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--tech-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow);
+                transform: translateY(-100vh);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .features-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .features-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .features-content h2,
+            .contact-info h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="logo">TV Tech Solution</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Trang Chủ</a></li>
+            <li><a href="#services">Dịch Vụ</a></li>
+            <li><a href="#showcase">Portfolio</a></li>
+            <li><a href="#features">Tính Năng</a></li>
+            <li><a href="#contact">Liên Hệ</a></li>
+        </ul>
+        <a href="#contact" class="cta-button">Tư Vấn Miễn Phí</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+            <h1>Chuyên Gia <span class="highlight">Mobile Engineering</span></h1>
+            <p>TV Tech Solution tập trung phát triển ứng dụng di động Android &amp; iOS chuyên
+                nghiệp cho doanh nghiệp Việt Nam. Sử dụng Compose Multiplatform, Native Android/iOS,
+                đội ngũ Mobile Engineers giàu kinh nghiệm giúp bạn xây dựng giải pháp mobile hiệu
+                quả và hiện đại.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Dịch Vụ Mobile</a>
+                <a href="#contact" class="btn-secondary">Liên Hệ Nhận Báo Giá</a>
+            </div>
+        </div>
+        <div class="hero-image" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div class="hero-graphic">
+                <div class="mobile-mockups">
+                    <div class="phone-mockup android"></div>
+                    <div class="phone-mockup ios"></div>
+                    <div class="mobile-icons">
+                        <i class="fab fa-android" style="--delay: 0s;"></i>
+                        <i class="fab fa-apple" style="--delay: 1s;"></i>
+                    </div>
+                    <div class="platform-badges">
+                        <span class="badge">Android</span>
+                        <span class="badge">iOS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up" data-aos-duration="1000">
+            <h2>Dịch Vụ Mobile Engineering</h2>
+            <p>Chuyên phát triển ứng dụng di động với Compose Multiplatform, Native Android/iOS,
+                UI/UX xuất sắc, tích hợp backend & cloud, tối ưu cho doanh nghiệp Việt Nam.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="100">
+                <div class="service-icon">
+                    <i class="fab fa-android"></i>
+                </div>
+                <h3>Phát Triển Ứng Dụng Android</h3>
+                <p>Native Android với Kotlin & Jetpack Compose, Compose Multiplatform để chia sẻ
+                    code UI giữa các platform, tối ưu hiệu suất và trải nghiệm người dùng.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="200">
+                <div class="service-icon">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h3>Phát Triển Ứng Dụng iOS</h3>
+                <p>Phát triển iOS với SwiftUI, giao diện hiện đại, tương thích Apple ecosystem, tận
+                    dụng công nghệ Swift mới nhất và bảo mật cao.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="300">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Thiết Kế UI/UX Mobile</h3>
+                <p>Thiết kế màn hình, luồng trải nghiệm và giao diện ấn tượng, thân thiện người
+                    dùng.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="400">
+                <div class="service-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Tích Hợp API & Cloud</h3>
+                <p>Kết nối dữ liệu real-time (Firebase, RESTful API), tích hợp cloud và backend hiện
+                    đại.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="500">
+                <div class="service-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Bảo Mật & Bảo Vệ Dữ Liệu</h3>
+                <p>Triển khai bảo mật app, xác thực người dùng, bảo vệ dữ liệu di động an toàn.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="600">
+                <div class="service-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Bảo trì & Hỗ Trợ Mobile App</h3>
+                <p>Đội ngũ Mobile Engineers hỗ trợ kỹ thuật, vận hành và cập nhật ứng dụng liên
+                    tục.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile Showcase Section -->
+<section class="mobile-showcase" id="showcase">
+    <div class="container">
+        <div class="section-header mb-0" data-aos="fade-up" data-aos-duration="1000">
+            <h2>Showcase Ứng Dụng Mobile</h2>
+            <p>TV Tech Solution có thể phát triển đa dạng ứng dụng mobile phù hợp mọi lĩnh vực kinh
+                doanh.</p>
+        </div>
+        <div class="showcase-grid">
+            <div class="app-showcase" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="100">
+                <div class="app-mockup ecommerce">
+                    <i class="fas fa-shopping-cart app-icon"></i>
+                </div>
+                <h3>Ứng Dụng Thương Mại Điện Tử</h3>
+                <p>Bán hàng online, thanh toán, quản lý sản phẩm, tài khoản và đơn hàng, tích hợp
+                    social share và push notification.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">iOS</span>
+                    <span class="tech-tag">Compose Multiplatform</span>
+                    <span class="tech-tag">Firebase</span>
+                </div>
+            </div>
+            <div class="app-showcase" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="200">
+                <div class="app-mockup social">
+                    <i class="fas fa-users app-icon"></i>
+                </div>
+                <h3>Mạng Xã Hội & Chat</h3>
+                <p>Kết nối cộng đồng, nhắn tin trực tuyến, cập nhật trạng thái, chia sẻ hình ảnh,
+                    video và quản lý nhóm hiện đại.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Compose Multiplatform</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">Ktor</span>
+                </div>
+            </div>
+            <div class="app-showcase" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="300">
+                <div class="app-mockup business">
+                    <i class="fas fa-briefcase app-icon"></i>
+                </div>
+                <h3>Ứng Dụng Quản Lý Doanh Nghiệp</h3>
+                <p>Quản lý nội bộ: nhân sự, tài liệu, lịch công tác, KPI, bảng thông báo, checkin
+                    GPS, báo cáo hoạt động.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">iOS</span>
+                    <span class="tech-tag">REST API</span>
+                </div>
+            </div>
+            <div class="app-showcase" data-aos="fade-up" data-aos-duration="1000"
+                 data-aos-delay="400">
+                <div class="app-mockup health">
+                    <i class="fas fa-heartbeat app-icon"></i>
+                </div>
+                <h3>Ứng Dụng Y Tế - Sức Khỏe</h3>
+                <p>Đặt lịch khám, quản lý hồ sơ sức khỏe, theo dõi chỉ số, tư vấn online video call
+                    và nhắc lịch dùng thuốc.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Compose Multiplatform</span>
+                    <span class="tech-tag">Firebase</span>
+                    <span class="tech-tag">WebRTC</span>
+                    <span class="tech-tag">Kotlin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="features-container">
+            <div class="features-content" data-aos="fade-right" data-aos-duration="1000">
+                <h2>Tại Sao Chọn TV Tech Solution?</h2>
+                <p>Đồng hành cùng bạn từ ý tưởng đến vận hành ứng dụng mobile trong thực tế kinh
+                    doanh. Chúng tôi là chuyên gia mobile engineering, đảm bảo hiệu quả dự án cho
+                    doanh nghiệp Việt.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check"></i> Mobile Engineers dày dặn kinh nghiệm thực tế
+                    </li>
+                    <li><i class="fas fa-check"></i> UI/UX mobile xuất sắc, tối ưu mọi thiết bị</li>
+                    <li><i class="fas fa-check"></i> Tích hợp backend, API, cloud nhanh chóng</li>
+                    <li><i class="fas fa-check"></i> Bảo mật app & dữ liệu chuyên sâu</li>
+                    <li><i class="fas fa-check"></i> Hỗ trợ vận hành, bảo trì liên tục</li>
+                    <li><i class="fas fa-check"></i> Chi phí hợp lý, linh hoạt theo dự án</li>
+                </ul>
+            </div>
+            <div class="features-visual" data-aos="fade-left" data-aos-duration="1000"
+                 data-aos-delay="200">
+                <div class="feature-box">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Nhanh Chóng</h4>
+                    <p>Triển khai dự án nhanh chóng với quy trình tối ưu</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-award"></i>
+                    <h4>Chất Lượng</h4>
+                    <p>Cam kết chất lượng cao trong từng sản phẩm</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-users"></i>
+                    <h4>Chuyên Nghiệp</h4>
+                    <p>Đội ngũ chuyên gia hàng đầu trong lĩnh vực IT</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-heart"></i>
+                    <h4>Tận Tâm</h4>
+                    <p>Phục vụ khách hàng với sự tận tâm và nhiệt huyết</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <span class="stat-number" data-count="500">0</span>
+                <span class="stat-label">Dự Án Hoàn Thành</span>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <span class="stat-number" data-count="200">0</span>
+                <span class="stat-label">Khách Hàng Hài Lòng</span>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <span class="stat-number" data-count="50">0</span>
+                <span class="stat-label">Chuyên Gia IT</span>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <span class="stat-number" data-count="5">0</span>
+                <span class="stat-label">Năm Kinh Nghiệm</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-container">
+            <div class="contact-info" data-aos="fade-right" data-aos-duration="1000">
+                <h2>Liên Hệ Với Chúng Tôi</h2>
+                <p>Sẵn sàng tư vấn và hỗ trợ bạn tìm ra giải pháp công nghệ phù hợp nhất. Hãy liên
+                    hệ ngay để được tư vấn miễn phí.</p>
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>+84 123 456 789</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@tvtechsolution.vn</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>T2 - T6: 8:00 - 18:00</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form" data-aos="fade-left" data-aos-duration="1000"
+                 data-aos-delay="200">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Họ và Tên</label>
+                        <input type="text" id="name" name="name"
+                               placeholder="Nhập họ và tên của bạn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Nhập địa chỉ email"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số Điện Thoại</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tin Nhắn</label>
+                        <textarea id="message" name="message"
+                                  placeholder="Mô tả dự án hoặc nhu cầu của bạn"
+                                  required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TV Tech Solution</h3>
+                <p>Đối tác tin cậy trong hành trình chuyển đổi số của doanh nghiệp Việt Nam.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Dịch Vụ</h3>
+                <ul>
+                    <li><a href="#">Phát Triển Ứng Dụng Android</a></li>
+                    <li><a href="#">Phát Triển Ứng Dụng iOS</a></li>
+                    <li><a href="#">Thiết Kế UI/UX Mobile</a></li>
+                    <li><a href="#">Tích Hợp Backend/API</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Công Ty</h3>
+                <ul>
+                    <li><a href="#">Về Chúng Tôi</a></li>
+                    <li><a href="#">Đội Ngũ</a></li>
+                    <li><a href="#">Tin Tức</a></li>
+                    <li><a href="#">Tuyển Dụng</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên Hệ</h3>
+                <ul>
+                    <li>123 Nguyễn Huệ, Q1, HCM</li>
+                    <li>+84 123 456 789</li>
+                    <li>contact@tvtechsolution.vn</li>
+                    <li>www.tvtechsolution.vn</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TV Tech Solution. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.className = 'fas fa-times';
+        } else {
+            icon.className = 'fas fa-bars';
+        }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+            }
+        });
+    });
+
+    // Animated counter
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current) + '+';
+        }, 30);
+    }
+
+    // Trigger counter animation when section is visible
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    animateCounter(counter, target);
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback);
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+
+    // Contact form handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+
+        // Simple validation
+        if (!data.name || !data.email || !data.message) {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        // Here you would typically send the data to your server
+        console.log('Form submitted:', data);
+
+        // Show success message
+        alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+
+        // Reset form
+        this.reset();
+    });
+
+    // Add loading animation for hero section
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const heroBackground = document.querySelector('.hero::before');
+        if (heroBackground) {
+            const rate = scrolled * -0.5;
+            heroBackground.style.transform = `translateY(${rate}px)`;
+        }
+    });
+</script>
+</body>
+</html>
